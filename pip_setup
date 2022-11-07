@@ -13,6 +13,14 @@ function main() {
 	#fix flax version
 	python -m pip install --upgrade flax==0.5.3
 
+	#stuff for ca-certs
+	python -m pip install certifi
+	cert_pth=$(python -m certi)
+	python -m pip config set global.cert ${cert_pth}
+	python -m pip config list
+	conda config --set ssl_verify ${cert_pth}
+	conda config --show ssl_verify
+
 }
 
 main $@

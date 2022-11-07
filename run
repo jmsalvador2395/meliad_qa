@@ -3,14 +3,15 @@
 function main() {
 	#path definitions
 	export PYTHONPATH=.:$PYTHONPATH
-	base_path=/data/john/projects/qa/meliad/
+	#base_path=/data/john/projects/qa/meliad/
+	base_path=$(pwd)/
 	cfg_path=${base_path}transformer/configs/
 
 	#execute training
 	python transformer/ht_main.py \
 		--alsologtostderr \
-		--workdir=/data/john/projects/qa/meliad/experiments \
-		--log_dir=/data/john/projects/qa/meliad/logs \
+		--workdir=${base_path}experiments \
+		--log_dir=${base_path}logs \
 		--gin_search_paths=/,${cfg_path} \
 		--gin_file=base_htrans.gin \
 		--gin_file=size/medium_150M.gin \
