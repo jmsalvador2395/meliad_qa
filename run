@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function main() {
+	#path definitions
+	export PYTHONPATH=.:$PYTHONPATH
+	base_path=/data/john/projects/qa/meliad/
+	cfg_path=${base_path}transformer/configs/
+
+	#execute training
+	python transformer/ht_main.py \
+		--alsologtostderr \
+		--workdir=/data/john/projects/qa/meliad/experiments \
+		--log_dir=/data/john/projects/qa/meliad/logs \
+		--gin_search_paths=/,${cfg_path} \
+		--gin_file=base_htrans.gin \
+		--gin_file=size/medium_150M.gin \
+		--gin_file=options/positions_t5.gin \
+		--gin_file=options/seq_4096.gin \
+		--gin_file=recurrent/bias_skip.gin \
+		--gin_file=tasks/pg19_tokens.gin \
+		--default_data_dir=./datasets
+
+}
+
+main $@

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function main() {
+	#for basic pip
+	python -m pip install -r requirements.txt
+
+	#for jax gpu
+	python -m pip install -U jaxlib==0.3.22+cuda11.cudnn82 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+	#install t5 because they said to do so
+	python -m pip install t5
+
+	#fix flax version
+	python -m pip install --upgrade flax==0.5.3
+
+}
+
+main $@
